@@ -107,11 +107,7 @@ npm install
 
 ### Start Redis
 
-```bash
-redis-server
-```
-
-### Start the Backend
+cretate a redis server on upstash and add the url and key on the .env file
 
 ```bash
 cd backend
@@ -180,6 +176,9 @@ GET /weather/London
 | `WEATHER_API_KEY` | Your Visual Crossing API key         |
 
 ---
+
+
+PROJECT IDEA source : https://roadmap.sh/projects/weather-api-wrapper-service
 
 ## License
 
