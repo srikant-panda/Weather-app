@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os,json
 import requests
 from upstash_redis import Redis
+from fastapi.responses import RedirectResponse
 # import redis
 
 
@@ -32,6 +33,15 @@ redis_token = str(os.getenv("REDIS_TOKEN"))
 redis_client = Redis(url=redis_url, token= redis_token)
 
 
+
+@app.get('/')
+def root():
+    return RedirectResponse('/docs')
+
+
+@app.get('/weather/')
+def redirect():
+    return RedirectResponse('/docs')
 @app.get('/weather/{location}')
 def get_weather(location : str):
 
