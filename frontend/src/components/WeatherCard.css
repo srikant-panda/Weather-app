@@ -1,0 +1,84 @@
+.weather-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: clamp(20px, 5vw, 32px) clamp(16px, 5vw, 28px);
+  backdrop-filter: blur(16px);
+  text-align: center;
+  position: relative;
+  animation: fadeUp 0.35s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.weather-icon {
+  font-size: clamp(3rem, 12vw, 4.5rem);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.city-name {
+  font-size: clamp(1.2rem, 5vw, 1.7rem);
+  font-weight: 700;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+.condition {
+  margin-top: 4px;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  color: #94a3b8;
+  text-transform: capitalize;
+}
+
+.temp-display {
+  font-size: clamp(2.8rem, 12vw, 4rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 16px 0;
+  line-height: 1;
+}
+
+.unit {
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  font-weight: 300;
+  color: #94a3b8;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: clamp(10px, 3vw, 14px) clamp(8px, 3vw, 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-label {
+  font-size: clamp(0.68rem, 2.5vw, 0.78rem);
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: clamp(0.82rem, 3vw, 0.95rem);
+  font-weight: 600;
+  color: #e2e8f0;
+  word-break: break-word;
+}
+
+/* Center the lone stat when count is odd */
+.stat:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,80 @@
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 400px) {
+  .search-form { flex-direction: row; }
+}
+
+.search-input {
+  flex: 1;
+  padding: 15px 18px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  backdrop-filter: blur(8px);
+  /* prevent zoom on iOS when font-size < 16px */
+  font-size: max(16px, 1rem);
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: #64748b;
+}
+
+.search-input:focus {
+  border-color: #4f9cf9;
+}
+
+.search-btn {
+  padding: 15px 24px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #4f9cf9, #2563eb);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  min-width: 90px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* comfortable tap target */
+  min-height: 48px;
+}
+
+@media (min-width: 400px) {
+  .search-btn { width: auto; }
+}
+
+.search-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.search-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
