@@ -6,7 +6,7 @@ import axios from "axios";
  * @returns {Promise<{ data: object, source: string }>}
  */
 export async function fetchWeather(location) {
-  const res = await axios.get(`/weather/${encodeURIComponent(location.trim())}`);
+  const res = await axios.get(`https://weather-app-21ec.onrender.com/weather/${encodeURIComponent(location.trim())}`);
   const data = res.data;
 
   if (data.error) throw new Error(data.error);

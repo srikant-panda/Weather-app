@@ -13,6 +13,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials = True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -45,6 +46,9 @@ def get_weather(location : str):
                 "source" : "cache",
                 "output" :  result
             }
+    except :
+        pass
+    try:
 
         data = requests.get(str(WEATHER_API_URL)+location,params=parameters)
 
@@ -97,7 +101,7 @@ def get_weather(location : str):
         return {"error": "Invalid response from weather API"}
     except redis.ResponseError:
         return {"error" : "Unidentified format of output"}
-    except redis.ConnectionError:
-        return {"error" : "redish is not conntected"}
+    # except redis.ConnectionError:
+    #     return {"error" : "redish is not conntected"}
     except redis.TimeoutError:
         return {"error" : "request timed out."}

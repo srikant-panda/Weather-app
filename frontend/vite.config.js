@@ -8,7 +8,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/weather": {
-        target: "http://localhost:8000",
+        target: "https://weather-app-21ec.onrender.com",
         changeOrigin: true,
       },
     },
