@@ -100,12 +100,13 @@ def get_weather(location : str):
 
     except requests.exceptions.Timeout:
         return {"error": "Weather service timeout"}
-
-    # except json.JSONDecodeError:
-    #     return {"error": "Invalid response from weather API"}
-    # except Redis.ResponseError:
-    #     return {"error" : "Unidentified format of output"}
-    # except Redis:
-        # return {"error" : "redish is not conntected"}
-    # except Redis.TimeoutError:
-    #     return {"error" : "request timed out."}
+    except json.JSONDecodeError:
+        return {"error": "Invalid response from weather API"}
+    except requests.exceptions.RequestException as e:
+        return {"error": f"Request failed: {str(e)}"}
+    except ConnectionError:
+        return {"error": "Redis is not connected"}
+    except TimeoutError:
+        return {"error": "Redis request timed out"}
+    except Exception as e:
+        return {"error": f"Unexpected error: {str(e)}"}
