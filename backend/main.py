@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os,json
 import requests
 from upstash_redis import Redis
+# import redis
 
 
 load_dotenv()
@@ -94,7 +95,7 @@ def get_weather(location : str):
     #     return {"error": "Invalid response from weather API"}
     # except Redis.ResponseError:
     #     return {"error" : "Unidentified format of output"}
-    # except Redis.:
-    #     return {"error" : "redish is not conntected"}
+    # except Redis:
+        # return {"error" : "redish is not conntected"}
     # except Redis.TimeoutError:
     #     return {"error" : "request timed out."}
