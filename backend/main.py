@@ -25,13 +25,9 @@ WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 parameters = {
     'key' : WEATHER_API_KEY,
 }
+redis_url = str(os.getenv("REDIS_URL"))
 
-redis_client = redis.Redis(
-    host= "localhost",
-    port=6379,
-    db=0,
-    decode_responses=True
-)
+redis_client = redis.from_url(redis_url)
 
 
 @app.get('/weather/{location}')
@@ -46,10 +42,6 @@ def get_weather(location : str):
                 "source" : "cache",
                 "output" :  result
             }
-    except :
-        pass
-    try:
-
         data = requests.get(str(WEATHER_API_URL)+location,params=parameters)
 
         if data.status_code in range(200,300):
@@ -101,7 +93,7 @@ def get_weather(location : str):
         return {"error": "Invalid response from weather API"}
     except redis.ResponseError:
         return {"error" : "Unidentified format of output"}
-    # except redis.ConnectionError:
-    #     return {"error" : "redish is not conntected"}
+    except redis.ConnectionError:
+        return {"error" : "redish is not conntected"}
     except redis.TimeoutError:
         return {"error" : "request timed out."}
