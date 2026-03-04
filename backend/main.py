@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os,json
 import requests
-import redis
+from upstash_redis import Redis
 
 
 load_dotenv()
@@ -26,8 +26,9 @@ parameters = {
     'key' : WEATHER_API_KEY,
 }
 redis_url = str(os.getenv("REDIS_URL"))
+redis_token = str(os.getenv("REDIS_TOKEN"))
 
-redis_client = redis.from_url(redis_url)
+redis_client = Redis(url=redis_url, token= redis_token)
 
 
 @app.get('/weather/{location}')
